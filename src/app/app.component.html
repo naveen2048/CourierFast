@@ -1,7 +1,14 @@
-<div>
+<!-- <div>
   <a routerLink="/home">Home</a>
-  <a routerLink="/orders">Orders</a> 
-</div>
-<div>
-  <router-outlet></router-outlet>
+  <a routerLink="/orders">Orders(List)</a>
+  <a routerLink="/orders-table">Orders(Table)</a>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <app-header-navigation></app-header-navigation>
+  </div>
+  <section class="subDiv">
+    <router-outlet></router-outlet>
+  </section>
 </div>
