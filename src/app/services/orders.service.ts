@@ -6,9 +6,9 @@ import { of } from "rxjs/observable/of";
 import "rxjs/add/operator/map";
 
 // import { superagent } from 'superagent';
-import { order } from '../model';
+import { order } from "../model";
 
-const request = require('superagent');
+//const request = require("superagent");
 
 @Injectable()
 export class OrderService {
@@ -16,14 +16,13 @@ export class OrderService {
 
   getOrders(): Observable<order[]> {
     // debugger;
-    let url = "http://localhost:4800/" ;//environment.SHOPIFY_ADMIN_ORDRES_URL;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json')
-                                     .set('Access-Control-Allow-Origin','*')
-                                     .set('Authorization','Basic ' + btoa("f48c2679dcae5ef7a399444b45ab5c95" + ":" + "fd69fe9f795a4a6248e415b2f1a9907b"));
-    return this.http
-               .get(url)
-               .map(data => <order[]>data.orders);
-               //.map(data => <any>data);
+    let url = environment.SHOPIFY_ORDERS_HEROKU;
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .set("Access-Control-Allow-Origin", "*")
+      .set("X-Shopify-Storefront-Access-Token", environment.sopifyaccesstoken);
+    return this.http.get(url).map((data:any) => <order[]>data.orders);
+    //.map(data => <any>data);
 
     // return request
     // .get("https://zinnga.myshopify.com/admin/orders.json")
@@ -55,5 +54,9 @@ export class OrderService {
     //     //res.send(JSON.stringify(response.body));
     //     return of(response.body);
     //   });
+  }
+
+  getVendors(): Observable<any> {
+    return this.http.get("../../assets/vendors.json").map((data:any) => <any>data.Vendors);
   }
 }

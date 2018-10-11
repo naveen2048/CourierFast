@@ -1,0 +1,41 @@
+<div style="padding-bottom: 5px;">
+  <app-spinner [showSpinner]="!vendors"></app-spinner>
+  <div class="Polaris-Card">
+    <div class="Polaris-Card__Section">
+      <div class="Polaris-Stack Polaris-Stack--vertical">
+        <div class="Polaris-Stack__Item">
+          <button type="button" class="Polaris-Button Polaris-Button--primary">
+            <span class="Polaris-Button__Content"><span>Add Vendor</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Polaris-Card" *ngFor="let vendor of vendors">
+    <div class="Polaris-Card__Section">
+      <div class="Polaris-Stack Polaris-Stack--vertical">
+        <div class="Polaris-Stack__Item">
+          <div class="row">
+            <div class="col-sm-3">
+              <b>{{vendor.PICKUP_NAME}}</b>
+            </div>
+            <div class="col-sm-3">
+              {{vendor.PICKUP_ADDRESS_LINE1}}<br />
+              {{vendor.PICKUP_ADDRESS_LINE2}}<br />
+              {{vendor.PICKUP_PINCODE}}
+            </div>
+            <div class="col-sm-3">
+              Phone: {{vendor.PICKUP_PHONE}}<br />
+              Mobile: {{vendor.PICKUP_MOBILE}}<br />
+            </div>
+            <div class="col-sm-3">
+              Seller GSTIN : {{vendor.SELLER_GSTIN}}<br />
+              Packing Type : {{vendor.PACKING_TYPE}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

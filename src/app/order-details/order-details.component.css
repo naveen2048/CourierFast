@@ -5,4 +5,17 @@
 
 .blocks {
     margin: 5px;
+    /* background: #f9fafb !important; */
+}
+
+.smallFont {
+    font-size: 10px !important;
+}
+
+.border-green {
+    border-top: solid 2px green;
+}
+
+.border-yellow {
+border-top: solid 2px #ffea8a;
 }

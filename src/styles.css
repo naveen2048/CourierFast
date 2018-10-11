@@ -15,12 +15,13 @@
 body{
     line-height: 2.4rem;
     letter-spacing: 0.085rem;
+    background: #f9fafb;
 }
 .form {
     background: #fff !important;
 }
 hr {
-    border-top: 1px solid #212b5a !important;
+    /* border-top: 1px solid #212b5a !important; */
 }
 #top-bar.animated-header {
     padding: 20px 0 0px 20px;
@@ -182,3 +183,13 @@ tab {
 .tabs__panel {
     background-color: #fff !important;
 }
+
+.details {
+    background:#dfe3e8;
+    font-size: 12px;
+}
+
+.blocks {
+    margin: 5px;
+}
+

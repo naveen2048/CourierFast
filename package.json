@@ -2,16 +2,20 @@
   "name": "polaris-app",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~1.7.3",
+    "@angular/compiler-cli": "^5.2.0",
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
@@ -29,7 +33,12 @@
     "rxjs": "^5.5.6",
     "serve-favicon": "^2.5.0",
     "superagent": "^3.5.2",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "cookie": "^0.3.1",
+    "dotenv": "^6.1.0",
+    "nonce": "^1.0.4",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",

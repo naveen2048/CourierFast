@@ -10,6 +10,8 @@ import { order } from '../model';
 export class OrdersTableComponent implements OnInit {
   data: order[];
   showDetails:boolean = false;
+  searchText:string;
+  
   constructor(private orderService: OrderService) {
   this.orderService.getOrders()
     .subscribe((data) => {

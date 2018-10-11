@@ -1,102 +1,16 @@
-<!-- <div style="height: 200px;">
-  <div class="Polaris-Card">
-    <div class="Polaris-Card__Section">
-      <div class="Polaris-Stack Polaris-Stack--vertical">
-        <div class="Polaris-Stack__Item">
-          <button type="button" class="Polaris-Button" (click)="toggle()"><span class="Polaris-Button__Content"><span>Toggle</span></span>
-          </button>
-        </div>
-        <div class="Polaris-Stack__Item">
-          <div id="basic-collapsible" aria-hidden="false" *ngIf="showDetails" class="Polaris-Collapsible Polaris-Collapsible--open"
-            style="height: auto;">
-            <div>
-              <div class="Polaris-TextContainer">Your mailing list lets you contact customers or visitors who have
-                shown an interest in your store. Reach out to them with exclusive offers or updates about your
-                products.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="Polaris-Card" *ngIf="data">
-  <div class="Polaris-Card__Header">
-    <div class="Polaris-Stack Polaris-Stack--alignmentBaseline">
-      <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
-        <h2 class="Polaris-Heading">Orders ({{data.length}})</h2>
-      </div>
-    </div>
-  </div>
-  <div class="Polaris-DataTable">
-    <table class="Polaris-DataTable__Table">
-      <thead>
-        <tr>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;">Order</th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;">Price</th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;">Placed By</th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;">Paid</th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;">Fulfillment</th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;"></th>
-          <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--header" scope="col"
-            style="height: 54px;"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="Polaris-DataTable__TableRow" *ngFor="let order of data">
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">
-            {{order.order_number}}
-          </td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">{{order.subtotal_price}}</td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">{{order.shipping_address.first_name}}
-            {{order.shipping_address.last_name}}</td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">
-            <span class="Polaris-Badge Polaris-Badge--statusAttention"><span class="Polaris-VisuallyHidden">Attention</span>{{order.financial_status}}</span>
-          </td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">
-            <span class="Polaris-Badge Polaris-Badge--progress{{order.fulfillment_status === null ? 'Incomplete' : 'Complete' }}"><span
-                class="Polaris-Badge__Pip">
-                <span class="Polaris-VisuallyHidden">Success</span></span>
-              {{order.fulfillment_status === null ? 'Unfullfilled' : 'Fulfilled' }}
-            </span>
-          </td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">
-            <div class="">
-              <div class="Polaris-Select"><select id="Select6" class="Polaris-Select__Input" aria-invalid="false">
-                  <option value="today">Ecom Express</option>
-                  <option value="yesterday">Delhivery</option>
-                  <option value="lastWeek">Aramax</option>
-                </select>
-                <div class="Polaris-Select__Content" aria-hidden="true"><span class="Polaris-Select__SelectedOption">Courier</span><span
-                    class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"
-                        focusable="false" aria-hidden="true">
-                        <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" fill-rule="evenodd"></path>
-                      </svg></span></span>
-                </div>
-                <div class="Polaris-Select__Backdrop"></div>
-              </div>
-            </div>
-          </td>
-          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" style="height: 72px;">
-            <button type="button" class="Polaris-Button Polaris-Button--plain" (click)="toggle()">
-              <span class="Polaris-Button__Content"><span>
-                  Order Details</span></span></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->
-
 <div class="container">
-  <div class="row" *ngFor="let order of data">
-    <app-order-details [order]="order"></app-order-details>
+  <div class="row">
+    <app-spinner [showSpinner]="!data"></app-spinner>
+  </div>
+  <div class="row" *ngIf="data">
+    <div class="col-sm-8">
+      <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search by order #" />
+    </div>
+  </div>
+  <hr *ngIf="data" />
+  <div class="row" *ngFor="let order of data | orderFilter:searchText">
+    <div class="col-sm-12">
+      <app-order-details [order]="order"></app-order-details>
+    </div>
   </div>
 </div>

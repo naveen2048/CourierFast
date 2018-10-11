@@ -8,11 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OrderDetailsComponent implements OnInit {
 
   @Input() order:any;
-  
+  selectedCourier:string = "";
+  selectedVendor:string = "";
+  gateway:string;
+
   showDetails:boolean = false;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.gateway = this.order.gateway
   }
 
   toggle() {
